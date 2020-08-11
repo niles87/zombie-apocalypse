@@ -8,22 +8,55 @@ class Player
 private:
 	const float START_SPEED = 200;
 	const float START_HEALTH = 100;
-	Vector2f position;
+	Vector2f m_Position;
 
-	Sprite sprite;
+	Sprite m_Sprite;
 
-	Texture texture;
-	Vector2f resolution;
-	IntRect arena;
-	Time lastHit;
+	Texture m_Texture;
+	Vector2f m_Resolution;
+	IntRect m_Arena;
+	Time m_LastHit;
 
-	int tileSize;
-	bool upPressed;
-	bool downPressed;
-	bool leftPressed;
-	bool rightPressed;
+	int m_TileSize;
 
-	float speed;
+	int m_MaxHealth;
+	int m_Health;
+	bool m_UpPressed;
+	bool m_DownPressed;
+	bool m_LeftPressed;
+	bool m_RightPressed;
 
+	float m_Speed;
+
+public:
+	Player();
+
+	// Player position 
+	void spawn(IntRect arena, Vector2f resolution, int tileSize);
+	void resetPlayerStats();
+	bool hit(Time timeHit);
+	Time getLastHit();
+	FloatRect getPosition();
+	Vector2f getCenter();
+	float getRotation();
+	Sprite getSprite();
+
+	// Player movement
+	void moveLeft();
+	void moveRight();
+	void moveUp();
+	void moveDown();
+	void stopLeft();
+	void stopRight();
+	void stopUp();
+	void stopDown();
+
+	void update(float elapsedTime, Vector2i mousePosition);
+
+	// Player attribute upgrades
+	void upgradeSpeed();
+	void upgradeHealth();
+	void increaseHealth(int amount);
+	int getHealth();
 };
 
